@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigType } from '@nestjs/config';
-import { databaseConfig, emailConfig, redisConfig } from './config';
+import { databaseConfig, configModuleLoadList } from './config';
 import { UserModule } from './user/user.module';
 import { RedisModule } from './redis/redis.module';
 import { EmailModule } from './email/email.module';
@@ -9,7 +9,7 @@ import { EmailModule } from './email/email.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [databaseConfig, redisConfig, emailConfig],
+      load: configModuleLoadList,
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
