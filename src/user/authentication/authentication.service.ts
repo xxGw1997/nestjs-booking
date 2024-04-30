@@ -204,7 +204,7 @@ export class AuthenticationService {
   async signToken<T>(userId: number, expiresIn: number, payload?: T) {
     return await this.jwtService.signAsync(
       {
-        sub: userId,
+        userId,
         ...payload,
       },
       {
